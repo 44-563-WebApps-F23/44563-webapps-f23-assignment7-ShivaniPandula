@@ -84,7 +84,7 @@
     <div id="help">
         <p>Help report</p>
     </div>
-    <button id="newGameButton">New Game</button>
+    <button id="newGameButton" onclick="newGame()">New Game</button>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
             <div><img id="img0" onclick="check(0)" width=120 height=100 src="treasure_location.jpg"></div>
@@ -143,9 +143,8 @@
         var gameOver = false;
         function check(position) {
             if (gameOver) return;
-            var id = ids[position];
-            var image = document.getElementById(id);
-            let imageSrc = "";
+            const id = ids[position];
+            const image = document.getElementById(id);
             if (position === treasureLocation) {
                 image.src = "treasure.jpg";
                 gameOver = true;
@@ -161,7 +160,7 @@
                 checkCount++;
                 penalty++;
             }
-            imageElement.setAttribute("src", imageSrc);
+
             document.getElementById("locations").textContent = "Number of locations checked is " + checkCount;
             document.getElementById("penalty").textContent = "Penalty is " + penalty;
             lastCheck = position;
@@ -181,13 +180,12 @@
             } else {
                 return "Step faster";
             }
+            penalty += 2;
             document.getElementById("penalty").textContent = "Penalty is : " + penalty;
             document.getElementById("help").textContent = "Help ";
         }
         function showHelp() {
             document.getElementById("help").textContent = help();
-            penalty += 2;
-            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
         }
         function newGame() {
             checkCount = 0;
@@ -199,13 +197,14 @@
             do {
                 trapLocation = Math.floor(Math.random() * 25);
             } while (trapLocation === treasureLocation);
-        }
-        document.getElementById("locations").innerHTML = "Number of locations checked is : " + checkCount;
-        document.getElementById("penalty").innerHTML = "Penalty is : " + penalty;
-        document.getElementById("help").innerHTML = "Help report";
 
-        for (var i = 0; i < 25; i++) {
-            document.getElementById(ids[i]).src = "treasure_location.jpg"
+            document.getElementById("locations").textContent = "Number of locations checked is : " + checkCount;
+            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+            document.getElementById("help").textContent = "Help report";
+
+            for (var i = 0; i < 25; i++) {
+                document.getElementById(ids[i]).src = "treasure_location.jpg"
+            }
         }
     </script>
 </body>
