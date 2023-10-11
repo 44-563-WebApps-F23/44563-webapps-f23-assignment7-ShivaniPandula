@@ -84,6 +84,7 @@
     <div id="help">
         <p>Help report</p>
     </div>
+    <button id="newGameButton">New Game</button>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
             <div><img id="img0" onclick="check(0)" width=120 height=100 src="treasure_location.jpg"></div>
@@ -144,6 +145,7 @@
             if (gameOver) return;
             var id = ids[position];
             var image = document.getElementById(id);
+            let imageSrc = "";
             if (position === treasureLocation) {
                 image.src = "treasure.jpg";
                 gameOver = true;
@@ -159,6 +161,7 @@
                 checkCount++;
                 penalty++;
             }
+            imageElement.setAttribute("src", imageSrc);
             document.getElementById("locations").textContent = "Number of locations checked is " + checkCount;
             document.getElementById("penalty").textContent = "Penalty is " + penalty;
             lastCheck = position;
