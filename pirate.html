@@ -135,12 +135,12 @@
             ids[i] = "img" + i
         }
         var checkCount = 0;
-          var penalty = 0;
-          var lastCheck = 0;
-          var treasureLocation = 5;
-          var trapLocation = 18;
-          var gameOver = false;
-          function check(position) {
+        var penalty = 0;
+        var lastCheck = 0;
+        var treasureLocation = 5;
+        var trapLocation = 18;
+        var gameOver = false;
+        function check(position) {
             if (gameOver) return;
             var id = ids[position];
             var image = document.getElementById(id);
@@ -148,15 +148,17 @@
                 image.src = "treasure.jpg";
                 gameOver = true;
                 penalty -= 3;
+                checkCount++;
             } else if (position === trapLocation) {
                 image.src = "treasure_trap1.jpeg";
                 gameOver = true;
                 penalty += 4;
+                checkCount++;
             } else {
                 image.src = "bones.jpg";
+                checkCount++;
+                penalty++;
             }
-            checkCount++;
-            penalty++;
             document.getElementById("locations").textContent = "Number of locations checked is " + checkCount;
             document.getElementById("penalty").textContent = "Penalty is " + penalty;
             lastCheck = position;
@@ -176,10 +178,32 @@
             } else {
                 return "Step faster";
             }
+            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+            document.getElementById("help").textContent = "Help ";
         }
         function showHelp() {
-        document.getElementById("help").textContent = help();
-    }
+            document.getElementById("help").textContent = help();
+            penalty += 2;
+            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+        }
+        function newGame() {
+            checkCount = 0;
+            penalty = 0;
+            lastCheck = 0;
+            gameOver = false;
+
+            treasureLocation = Math.floor(Math.random() * 25);
+            do {
+                trapLocation = Math.floor(Math.random() * 25);
+            } while (trapLocation === treasureLocation);
+        }
+        document.getElementById("locations").innerHTML = "Number of locations checked is : " + checkCount;
+        document.getElementById("penalty").innerHTML = "Penalty is : " + penalty;
+        document.getElementById("help").innerHTML = "Help report";
+
+        for (var i = 0; i < 25; i++) {
+            document.getElementById(ids[i]).src = "treasure_location.jpg"
+        }
     </script>
 </body>
 
