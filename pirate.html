@@ -78,57 +78,135 @@
     <div id="penalty">
         <p>Penalty is zero</p>
     </div>
-    <div>
+    <div id="click" onclick="showHelp()">
         <p>Click for help</p>
     </div>
     <div id="help">
         <p>Help report</p>
     </div>
+    <button id="newGameButton" onclick="newGame()">New Game</button>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
-            <div><img id="img0" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img1" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img2" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img3" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img4" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img0" onclick="check(0)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img1" onclick="check(1)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img2" onclick="check(2)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img3" onclick="check(3)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img4" onclick="check(4)" width=120 height=100 src="treasure_location.jpg"></div>
         </div>
     </div>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
-            <div><img id="img5" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img6" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img7" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img8" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img9" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img5" onclick="check(5)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img6" onclick="check(6)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img7" onclick="check(7)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img8" onclick="check(8)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img9" onclick="check(9)" width=120 height=100 src="treasure_location.jpg"></div>
         </div>
     </div>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
-            <div><img id="img10" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img11" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img12" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img13" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img14" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img10" onclick="check(10)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img11" onclick="check(11)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img12" onclick="check(12)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img13" onclick="check(13)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img14" onclick="check(14)" width=120 height=100 src="treasure_location.jpg"></div>
         </div>
     </div>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
-            <div><img id="img15" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img16" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img17" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img18" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img19" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img15" onclick="check(15)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img16" onclick="check(16)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img17" onclick="check(17)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img18" onclick="check(18)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img19" onclick="check(19)" width=120 height=100 src="treasure_location.jpg"></div>
         </div>
     </div>
     <div class="container">
         <div class="image-row d-flex justify-content-center">
-            <div><img id="img20" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img21" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img22" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img23" width=120 height=100 src="treasure_location.jpg"></div>
-            <div><img id="img24" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img20" onclick="check(20)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img21" onclick="check(21)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img22" onclick="check(22)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img23" onclick="check(23)" width=120 height=100 src="treasure_location.jpg"></div>
+            <div><img id="img24" onclick="check(24)" width=120 height=100 src="treasure_location.jpg"></div>
         </div>
     </div>
+    <script>
+        let ids = [];
+        for (let i = 0; i < 25; i++) {
+            ids[i] = "img" + i
+        }
+        var checkCount = 0;
+        var penalty = 0;
+        var lastCheck = 0;
+        var treasureLocation = 5;
+        var trapLocation = 18;
+        var gameOver = false;
+        function check(position) {
+            if (gameOver) return;
+            const id = ids[position];
+            const image = document.getElementById(id);
+            if (position === treasureLocation) {
+                image.src = "treasure.jpg";
+                gameOver = true;
+                penalty -= 3;
+                checkCount++;
+            } else if (position === trapLocation) {
+                image.src = "treasure_trap1.jpeg";
+                gameOver = true;
+                penalty += 4;
+                checkCount++;
+            } else {
+                image.src = "bones.jpg";
+                checkCount++;
+                penalty++;
+            }
+
+            document.getElementById("locations").textContent = "Number of locations checked is " + checkCount;
+            document.getElementById("penalty").textContent = "Penalty is " + penalty;
+            lastCheck = position;
+        }
+
+        function help() {
+            var treasureRow = Math.floor(treasureLocation / 5);
+            var treasureCol = treasureLocation % 5;
+            var lastRow = Math.floor(lastCheck / 5);
+            var lastCol = lastCheck % 5;
+            var rowDiff = Math.abs(treasureRow - lastRow);
+            var colDiff = Math.abs(treasureCol - lastCol);
+            if (rowDiff + colDiff === 1) {
+                return "Can smell it";
+            } else if (rowDiff + colDiff === 2) {
+                return "Close Matie";
+            } else {
+                return "Step faster";
+            }
+            penalty += 2;
+            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+            document.getElementById("help").textContent = "Help ";
+        }
+        function showHelp() {
+            document.getElementById("help").textContent = help();
+        }
+        function newGame() {
+            checkCount = 0;
+            penalty = 0;
+            lastCheck = 0;
+            gameOver = false;
+
+            treasureLocation = Math.floor(Math.random() * 25);
+            do {
+                trapLocation = Math.floor(Math.random() * 25);
+            } while (trapLocation === treasureLocation);
+
+            document.getElementById("locations").textContent = "Number of locations checked is : " + checkCount;
+            document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+            document.getElementById("help").textContent = "Help report";
+
+            for (var i = 0; i < 25; i++) {
+                document.getElementById(ids[i]).src = "treasure_location.jpg"
+            }
+        }
+    </script>
 </body>
 
 </html>
